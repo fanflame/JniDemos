@@ -1,2 +1,2 @@
-include ':app', ':genstatic'
+include ':app', ':genstatic', ':usestatic'
 rootProject.name='JniDemos'

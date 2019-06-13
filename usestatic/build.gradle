@@ -6,17 +6,21 @@ android {
 
 
     defaultConfig {
-        applicationId "com.fanyiran.genstatic"
+        applicationId "com.fanyiran.usestatic"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
-        versionName "1.0"
+        versionName
         externalNativeBuild{
             cmake{
-                abiFilters "arm64-v8a","x86"
-                targets "staticlib" //添加这个之后make mode才会生成静态库
+                abiFilters "arm64-v8a","x86" // 添加这行，否则报***missing and no known rule to make it的错误
             }
+        }
+    }
 
+    sourceSets {
+        main{
+            jniLibs.srcDirs = ["libs"]
         }
     }
 
@@ -26,11 +30,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    externalNativeBuild {
-        cmake {
-            path file('src/main/cpp/CMakeLists.txt')
-        }
-    }
+//    externalNativeBuild {
+//        cmake {
+//            path file('src/main/cpp/CMakeLists.txt')
+//        }
+//    }
 
 }
 
