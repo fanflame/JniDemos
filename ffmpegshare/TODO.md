@@ -1,0 +1,6 @@
+当前是分别使用ffmpeg的各个so文件
+
+
+疑问：
+target_link_libraries链接库的过程不会将所有add_library进入的so打包进最后so文件中？
+如何将所有so库打包成一个库然后使用？
