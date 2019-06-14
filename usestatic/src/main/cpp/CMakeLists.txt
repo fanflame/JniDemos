@@ -12,9 +12,10 @@ add_library(usestaticlib # 生成的动态库名称
 add_library(
         staticlib # 引入的静态库库名称
         STATIC  # 设置库作为静态库
-        IMPORTED # 引入)
+        IMPORTED # 引入
+        )
 set_target_properties(staticlib PROPERTIES IMPORTED_LOCATION
-        ${CMAKE_CURRENT_SOURCE_DIR}/../../../libs/${CMAKE_ANDROID_ARCH_ABI}/libstaticlib.a# 设置静态库路径，必须是绝对路径
+        ${CMAKE_CURRENT_SOURCE_DIR}/../../../staticlibs/${CMAKE_ANDROID_ARCH_ABI}/libstaticlib.a# 设置静态库路径，必须是绝对路径
         )
 
 target_include_directories(usestaticlib PRIVATE
