@@ -1,9 +1,9 @@
 # ffmpeg编译android so库
 
 ### 环境配置
-ffmpeg version 使用3.3.7
-macos High Sierra 10.13.4
-ndk android-ndk-r14b(不要使用android studio sdk下的ndk,需要重新下载 https://developer.android.com/ndk/downloads/older_releases.html)
+- ffmpeg version 使用3.3.7
+- macos High Sierra 10.13.4
+- ndk android-ndk-r14b(不要使用android studio sdk下的ndk,需要重新下载 https://developer.android.com/ndk/downloads/older_releases.html)
 
 下载完毕之后配置ndk的全局环境：
 ~/.bash_profile中修改ndkpath
@@ -14,6 +14,7 @@ export PATH=$PATH:$NDK_HOME/
 
 ### 下载FFmpeg源码
 git clone https://git.ffmpeg.org/ffmpeg.git
+
 git checkout -b n3.3.7
 需要切换到n3.3.7版本
 ### 修改configure文件
@@ -38,11 +39,11 @@ SLIB_INSTALL_LINKS='$(SLIBNAME)'
 
 make clean
 # NDK的路径，根据自己的安装位置进行设置
-export TMPDIR=/Users/momo/Documents/ffmpeg_make
-export NDK=/Users/momo/Library/Android/sdk/ndk-bundle
+export TMPDIR=/Users/momo/Documents/ffmpeg/ffmpeg_make_temp
+export NDK=/Users/momo/Downloads/android-ndk-r14b
 export SYSROOT=$NDK/platforms/android-21/arch-arm/
 export TOOLCHAIN=$NDK/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64
-export CPU=arm
+#export CPU=armeabi-v7a
 export PREFIX=$(pwd)/android/$CPU
 export ADDI_CFLAGS="-marm"
 function build_one
@@ -88,8 +89,34 @@ make clean
 make -j4
 make install
 }
+# arm v7vfp
+CPU=armv7a
+OPTIMIZE_CFLAGS="-mfloat-abi=softfp -mfpu=vfp -marm -march=$CPU "
+ADDITIONAL_CONFIGURE_FLAG=
 build_one
-
+# CPU=armv
+# ADDI_CFLAGS="-marm"
+# build_one
+#arm v6
+#CPU=armv6
+#OPTIMIZE_CFLAGS="-marm -march=$CPU"
+#ADDITIONAL_CONFIGURE_FLAG=
+#build_one
+#arm v7vfpv3
+# CPU=armv7-a
+# OPTIMIZE_CFLAGS="-mfloat-abi=softfp -mfpu=vfpv3-d16 -marm -march=$CPU "
+# ADDITIONAL_CONFIGURE_FLAG=
+# build_one
+#arm v7n
+#CPU=armv7-a
+#OPTIMIZE_CFLAGS="-mfloat-abi=softfp -mfpu=neon -marm -march=$CPU -mtune=cortex-a8"
+#ADDITIONAL_CONFIGURE_FLAG=--enable-neon
+#build_one
+#arm v6+vfp
+#CPU=armv6
+#OPTIMIZE_CFLAGS="-DCMP_HAVE_VFP -mfloat-abi=softfp -mfpu=vfp -marm -march=$CPU"
+#ADDITIONAL_CONFIGURE_FLAG=
+#build_one\
 ```
 
 其中：
@@ -103,7 +130,7 @@ build_one
 - enable和disable指定了需要编译的项
 - target-os为目标操作系统；
 
-有两处是需要根据自己的情况修改的地方：TMPDIR，NDK
+**有两处是需要根据自己的情况修改的地方：TMPDIR，NDK**
 ### 编译FFmpeg
 在ffmpeg目录中，执行终端命令：
 ```

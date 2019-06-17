@@ -37,7 +37,7 @@ externalNativeBuild{
 ### 编译
 点击make mode，生成so文件
 
-![静态库生成路径](./pics/1.png)
+![静态库生成路径](https://github.com/fanflame/JniDemos/blob/master/usestatic/pics/1.png?raw=true)
 
 ### 使用so
 注释掉gradle以下代码
@@ -63,7 +63,7 @@ sourceSets {
 
 - __cplusplus 是两个下划线，只有一个下滑线会报错：undefined reference to ***
 
-- 需要添加才会在生成apk中打入so
+- 需要添加以下内容才会在生成apk中打入so
 ```
 sourceSets {
     main{

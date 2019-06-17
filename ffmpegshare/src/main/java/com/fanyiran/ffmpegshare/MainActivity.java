@@ -9,7 +9,7 @@ public class MainActivity extends AppCompatActivity {
 
     static {
         System.loadLibrary("avutil-55");
-        System.loadLibrary("ffmpeg");
+        System.loadLibrary("ffmpegcaller");
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {

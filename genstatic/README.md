@@ -1,9 +1,9 @@
 # Android cmake生成静态库
 
 
-### 前提
+### 环境配置
 
-使用android studio生成native工程或者自己生成cmakelist.txt以及在gradle中配置路径。
+使用android studio生成native工程或者手动生成cmakelist.txt以及在gradle中配置路径。
 
 ---
 
@@ -41,7 +41,7 @@
         return a+b;
     }
     native代码结构如下
-![native代码结构](./pics/2.png)
+![native代码结构](https://github.com/fanflame/JniDemos/blob/master/genstatic/pics/2.png?raw=true)
 ### 修改gradle
 gradle中android/defaultConfig中添加如下代码
 
@@ -58,5 +58,5 @@ externalNativeBuild{
 ### 编译生成静态库
 点击菜单make mode按钮即刻生成.a文件,路径如下
 
-![静态库生成路径](./pics/1.png)
+![静态库生成路径](https://github.com/fanflame/JniDemos/blob/master/genstatic/pics/1.png?raw=true)
 
