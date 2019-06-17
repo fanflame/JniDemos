@@ -1,2 +1,2 @@
-include ':app', ':genstatic', ':usestatic', ':ffmpegshare'
+include ':app', ':genstatic', ':usestatic', ':ffmpegshare_3.3.7', ':ffmpegsharebuildone_4.1.3'
 rootProject.name='JniDemos'
