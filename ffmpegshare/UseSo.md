@@ -46,7 +46,7 @@ externalNativeBuild{
 
 基本上会遇到以上问题，解决掉之后，最终编译生成的so路径如下：
 
-<!--![so生成路径](https://github.com/fanflame/JniDemos/blob/master/ffmpegshare/pics/1.png?raw=true)-->
+![so生成路径](https://github.com/fanflame/JniDemos/blob/master/ffmpegshare/pics/1.png?raw=true)
 
 
 ### 运行
