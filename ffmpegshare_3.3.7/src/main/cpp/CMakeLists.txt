@@ -15,7 +15,7 @@ add_library(ffmpegcaller # 生成的动态库名称
 #        IMPORTED # 引入
 #)
 #set_target_properties(avcodec PROPERTIES IMPORTED_LOCATION
-#        ${CMAKE_CURRENT_SOURCE_DIR}/../../../sharelibs/armeabi-v7a/libavcodec-57.so # 设置静态库路径，必须是绝对路径
+#        ${CMAKE_CURRENT_SOURCE_DIR}/../../../sharelibs/${CMAKE_ANDROID_ARCH_ABI}/libavcodec-57.so # 设置静态库路径，必须是绝对路径
 #        )
 #add_library(
 #        avdevice # 引入的静态库库名称
@@ -23,7 +23,7 @@ add_library(ffmpegcaller # 生成的动态库名称
 #        IMPORTED # 引入
 #)
 #set_target_properties(avdevice PROPERTIES IMPORTED_LOCATION
-#        ${CMAKE_CURRENT_SOURCE_DIR}/../../../sharelibs/armeabi-v7a/libavdevice-57.so # 设置静态库路径，必须是绝对路径
+#        ${CMAKE_CURRENT_SOURCE_DIR}/../../../sharelibs/${CMAKE_ANDROID_ARCH_ABI}/libavdevice-57.so # 设置静态库路径，必须是绝对路径
 #        )
 #add_library(
 #        avfilter # 引入的静态库库名称
@@ -31,7 +31,7 @@ add_library(ffmpegcaller # 生成的动态库名称
 #        IMPORTED # 引入
 #)
 #set_target_properties(avfilter PROPERTIES IMPORTED_LOCATION
-#        ${CMAKE_CURRENT_SOURCE_DIR}/../../../sharelibs/armeabi-v7a/libavfilter-6.so # 设置静态库路径，必须是绝对路径
+#        ${CMAKE_CURRENT_SOURCE_DIR}/../../../sharelibs/${CMAKE_ANDROID_ARCH_ABI}/libavfilter-6.so # 设置静态库路径，必须是绝对路径
 #        )
 #add_library(
 #        avformat # 引入的静态库库名称
@@ -39,7 +39,7 @@ add_library(ffmpegcaller # 生成的动态库名称
 #        IMPORTED # 引入
 #)
 #set_target_properties(avformat PROPERTIES IMPORTED_LOCATION
-#        ${CMAKE_CURRENT_SOURCE_DIR}/../../../sharelibs/armeabi-v7a/libavformat-57.so # 设置静态库路径，必须是绝对路径
+#        ${CMAKE_CURRENT_SOURCE_DIR}/../../../sharelibs/${CMAKE_ANDROID_ARCH_ABI}/libavformat-57.so # 设置静态库路径，必须是绝对路径
 #        )
 add_library(
         avutil # 引入的静态库库名称
@@ -47,7 +47,7 @@ add_library(
         IMPORTED # 引入
 )
 set_target_properties(avutil PROPERTIES IMPORTED_LOCATION
-        ${CMAKE_CURRENT_SOURCE_DIR}/../../../sharelibs/armeabi-v7a/libavutil-55.so # 设置静态库路径，必须是绝对路径
+        ${CMAKE_CURRENT_SOURCE_DIR}/../../../sharelibs/${CMAKE_ANDROID_ARCH_ABI}/libavutil-55.so # 设置静态库路径，必须是绝对路径
         )
 #add_library(
 #        postproc # 引入的静态库库名称
@@ -55,7 +55,7 @@ set_target_properties(avutil PROPERTIES IMPORTED_LOCATION
 #        IMPORTED # 引入
 #)
 #set_target_properties(postproc PROPERTIES IMPORTED_LOCATION
-#        ${CMAKE_CURRENT_SOURCE_DIR}/../../../sharelibs/armeabi-v7a/libpostproc-54.so # 设置静态库路径，必须是绝对路径
+#        ${CMAKE_CURRENT_SOURCE_DIR}/../../../sharelibs/${CMAKE_ANDROID_ARCH_ABI}/libpostproc-54.so # 设置静态库路径，必须是绝对路径
 #        )
 #add_library(
 #        swresample # 引入的静态库库名称
@@ -63,7 +63,7 @@ set_target_properties(avutil PROPERTIES IMPORTED_LOCATION
 #        IMPORTED # 引入
 #)
 #set_target_properties(swresample PROPERTIES IMPORTED_LOCATION
-#        ${CMAKE_CURRENT_SOURCE_DIR}/../../../sharelibs/armeabi-v7a/libswresample-2.so # 设置静态库路径，必须是绝对路径
+#        ${CMAKE_CURRENT_SOURCE_DIR}/../../../sharelibs/${CMAKE_ANDROID_ARCH_ABI}/libswresample-2.so # 设置静态库路径，必须是绝对路径
 #        )
 #
 #add_library(
@@ -72,7 +72,7 @@ set_target_properties(avutil PROPERTIES IMPORTED_LOCATION
 #        IMPORTED # 引入
 #)
 #set_target_properties(swscale PROPERTIES IMPORTED_LOCATION
-#        ${CMAKE_CURRENT_SOURCE_DIR}/../../../sharelibs/armeabi-v7a/libswscale-4.so # 设置静态库路径，必须是绝对路径
+#        ${CMAKE_CURRENT_SOURCE_DIR}/../../../sharelibs/${CMAKE_ANDROID_ARCH_ABI}/libswscale-4.so # 设置静态库路径，必须是绝对路径
 #        )
 
 target_include_directories(ffmpegcaller PRIVATE

@@ -33,14 +33,6 @@ target_link_libraries(
 ```
 
 ### 修改gradle文件
-- android/defaultconfig 添加以下代码配置编译支持的cpu类型：
-```
-externalNativeBuild{
-    cmake{
-        abiFilters "armeabi-v7a"
-    }
-}
-```
 
 - 需要注释掉以下内容（如果有的话），否则会报错：More than one file was found with OS independent path 'lib/armeabi-v7a/libffmpeg.so'
 ```
@@ -64,13 +56,14 @@ externalNativeBuild{
 执行make module时jni可能会出现的问题
 - 出现类似：fatal error: 'libavutil/avconfig.h' file not found
 
-删除"libavutil/"
+    删除"libavutil/"
 
 - error: undefined reference to 'av_version_info()'
 
-将#include <avutil.h>放在extern "C" 里边
+    将#include <avutil.h>放在extern "C" 里边
 
 - error: unknown type name 'JNIEXPORT'
+    确保添加<jni.h>还报这个错的话，clean
 
 基本上会遇到以上问题，解决掉之后，最终编译生成的so路径如下：
 

@@ -15,7 +15,7 @@ add_library(
         IMPORTED # 引入
 )
 set_target_properties(ffmpeg PROPERTIES IMPORTED_LOCATION
-        ${CMAKE_CURRENT_SOURCE_DIR}/../../../libs/armeabi-v7a/libffmpeg.so # 设置静态库路径，必须是绝对路径
+        ${CMAKE_CURRENT_SOURCE_DIR}/../../../libs/${CMAKE_ANDROID_ARCH_ABI}/libffmpeg.so # 设置静态库路径，必须是绝对路径
         )
 # 与ffmpegshare_3.3.7不同的是是用了include_directories
 include_directories(ffmpegcaller PRIVATE
