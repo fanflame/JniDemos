@@ -1,10 +1,8 @@
 package com.fanyiran.opencv;
 
-import android.app.Activity;
 import android.graphics.ImageFormat;
 import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
-import android.view.Surface;
 import android.view.SurfaceHolder;
 
 import java.io.IOException;
@@ -162,17 +160,6 @@ public class CameraUtils {
     }
 
     /**
-     * 拍照
-     */
-    public static void takePicture(Camera.ShutterCallback shutterCallback,
-                                   Camera.PictureCallback rawCallback,
-                                   Camera.PictureCallback pictureCallback) {
-        if (mCamera != null) {
-            mCamera.takePicture(shutterCallback, rawCallback, pictureCallback);
-        }
-    }
-
-    /**
      * 设置预览大小
      * @param camera
      * @param expectWidth
@@ -187,17 +174,6 @@ public class CameraUtils {
     }
 
     /**
-     * 获取预览大小
-     * @return
-     */
-    public static Camera.Size getPreviewSize() {
-        if (mCamera != null) {
-            return mCamera.getParameters().getPreviewSize();
-        }
-        return null;
-    }
-
-    /**
      * 设置拍摄的照片大小
      * @param camera
      * @param expectWidth
@@ -209,17 +185,6 @@ public class CameraUtils {
                 expectWidth, expectHeight);
         parameters.setPictureSize(size.width, size.height);
         camera.setParameters(parameters);
-    }
-
-    /**
-     * 获取照片大小
-     * @return
-     */
-    public static Camera.Size getPictureSize() {
-        if (mCamera != null) {
-            return mCamera.getParameters().getPictureSize();
-        }
-        return null;
     }
 
     /**
@@ -322,11 +287,4 @@ public class CameraUtils {
         return mCameraID;
     }
 
-    /**
-     * 获取FPS（千秒值）
-     * @return
-     */
-    public static int getCameraPreviewThousandFps() {
-        return mCameraPreviewFps;
-    }
 }
