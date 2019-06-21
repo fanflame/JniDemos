@@ -22,9 +22,11 @@ set_target_properties(opencv PROPERTIES IMPORTED_LOCATION
 
 include_directories(include/) # 设置.h文件位置
 
+find_library(log-lib log)
 # 链接库
 target_link_libraries(
         useopencv
         opencv
 #        opencv_java3
-        android)
+        android
+        ${log-lib})

@@ -7,8 +7,12 @@
 #include <android/native_window_jni.h>
 #include <opencv2/opencv.hpp>
 #include <opencv2/objdetect.hpp>
+#include <android/log.h>
 using namespace cv;
 using namespace std;
+
+#define TAG    "opencv-jni" // 这个是自定义的LOG的标识
+#define LOGD(...)  __android_log_print(ANDROID_LOG_DEBUG,TAG,__VA_ARGS__) // 定义LOGD类型
 
 class CascadeDetectorAdapter: public DetectionBasedTracker::IDetector
 {
@@ -35,20 +39,21 @@ private:
 };
 
 extern "C" {
-CascadeClassifier *pClassifier = nullptr;
-ANativeWindow *window = nullptr;
-DetectionBasedTracker *tracker = nullptr;
+CascadeClassifier *pClassifier = 0;
+ANativeWindow *window = 0;
+DetectionBasedTracker *tracker = 0;
 
 JNIEXPORT void JNICALL
-Java_com_fanyiran_usestatic_MainActivity_initFaceDetecter(JNIEnv *env, jobject thiz,
+Java_com_fanyiran_opencv_MainActivity_initFaceDetecter(JNIEnv *env, jobject thiz,
                                                           jstring model_) {
     const char *path = env->GetStringUTFChars(model_, NULL);
+    LOGD("model_:%s",path);
     // 第一种方案
 //    if (pClassifier == nullptr) {
 //        pClassifier = new CascadeClassifier(path);
 //    }
 
-    // 第二种方案
+//    // 第二种方案
     //创建一个跟踪适配器
     Ptr<CascadeDetectorAdapter> mainDetector = makePtr<CascadeDetectorAdapter>(makePtr<CascadeClassifier>(path));
     //创建一个跟踪适配器
@@ -63,7 +68,7 @@ Java_com_fanyiran_usestatic_MainActivity_initFaceDetecter(JNIEnv *env, jobject t
 
 }
 JNIEXPORT void JNICALL
-Java_com_fanyiran_usestatic_MainActivity_setSurface(JNIEnv *env, jobject thiz, jobject surface) {
+Java_com_fanyiran_opencv_MainActivity_setSurface(JNIEnv *env, jobject thiz, jobject surface) {
     if (window) {
         ANativeWindow_release(window);
         window = 0;
@@ -72,13 +77,13 @@ Java_com_fanyiran_usestatic_MainActivity_setSurface(JNIEnv *env, jobject thiz, j
 }
 
 JNIEXPORT void JNICALL
-Java_com_fanyiran_usestatic_MainActivity_faceDetected(JNIEnv *env, jobject thiz, jbyteArray data_,
+Java_com_fanyiran_opencv_MainActivity_faceDetected(JNIEnv *env, jobject thiz, jbyteArray data_,
                                                       jint width, jint height, jint cameraId) {
-    jbyte *data = env->GetByteArrayElements(data_, nullptr);
+    jbyte *data = env->GetByteArrayElements(data_, NULL);
     //将data->Mat
+
     Mat src(height + height / 2, width, CV_8UC1, data);
     cvtColor(src, src, COLOR_YUV2RGBA_NV21);
-
     if (cameraId == 1) {
         // 前置，逆时针90
         rotate(src,src,ROTATE_90_COUNTERCLOCKWISE);
@@ -132,6 +137,8 @@ Java_com_fanyiran_usestatic_MainActivity_faceDetected(JNIEnv *env, jobject thiz,
                 ANativeWindow_unlockAndPost(window);
             }
         } while (0);
+    } else {
+        LOGD("window is null");
     }
 
     src.release();
@@ -141,7 +148,7 @@ Java_com_fanyiran_usestatic_MainActivity_faceDetected(JNIEnv *env, jobject thiz,
 }
 
 JNIEXPORT void JNICALL
-Java_com_fanyiran_usestatic_MainActivity_release(JNIEnv *env, jobject thiz) {
+Java_com_fanyiran_opencv_MainActivity_release(JNIEnv *env, jobject thiz) {
     if (tracker) {
         tracker->stop();
         delete tracker;
